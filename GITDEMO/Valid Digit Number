@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool validDigit(int n, int x) {
+        string str = to_string(n);
+        char T = x+'0';
+        if(str[0] == T) {
+            return false;
+        }
+        for(char O : str){
+            if(O == T) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
