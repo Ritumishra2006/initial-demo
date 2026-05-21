@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int longestCommonPrefix(vector<int>& arr1, vector<int>& arr2) {
+        unordered_set<int> prefix;
+        
+        for(int val : arr1) {
+            while(val > 0) {
+                prefix.insert(val);
+                val/=10;
+            }
+        }
+
+        int l = 0;
+
+        for(int val : arr2) {
+            while(val > 0) {
+                if(val <= l)
+                break;
+
+                if(prefix.count(val)) {
+                    int current_length = to_string(val).length();
+                    l = max(l, current_length);
+                    break;
+                }
+                val /= 10;
+      }
+        }
+        return l;
+    }
+};
