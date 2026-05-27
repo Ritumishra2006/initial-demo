@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int numberOfSpecialChars(std::string word) {
+        
+        vector<bool> lowerSeen(26, false);
+        vector<bool> upperSeen(26, false);
+        int specialCount = 0;
+
+        // Step 1: Mark the presence of each character
+        for (char c : word) {
+            if (c >= 'a' && c <= 'z') {
+                lowerSeen[c - 'a'] = true;
+            } else if (c >= 'A' && c <= 'Z') {
+                upperSeen[c - 'A'] = true;
+            }
+        }
+
+        // Step 2: Count letters that appear in both cases
+        for (int i = 0; i < 26; ++i) {
+            if (lowerSeen[i] && upperSeen[i]) {
+                specialCount++;
+            }
+        }
+
+        return specialCount;
+    }
+};
