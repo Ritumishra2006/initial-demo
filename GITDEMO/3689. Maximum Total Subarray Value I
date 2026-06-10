@@ -1,0 +1,9 @@
+class Solution {
+public:
+    long long maxTotalValue(vector<int>& nums, int k) {
+        auto[min_element, max_element] = minmax_element(nums.begin(),nums.end());
+
+        long long maxi_diff = *max_element - *min_element;
+
+         return maxi_diff*k;
+    }
