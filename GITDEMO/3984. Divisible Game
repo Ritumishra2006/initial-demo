@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int divisibleGame(vector<int>& nums) {
+        auto ran = nums;
+        const int MOD = 1e9+7;
+        unordered_set<int> divisors;
+
+        for(int x : nums) {
+            for(int d = 2; 1LL*d*d <= x; d++) {
+                if(x%d == 0) {
+                   divisors.insert(d);
+                    divisors.insert(x / d);  
+                }
+            }
+            if(x > 1) divisors.insert(x);
+        }
+        divisors.insert(2);
+        
+
+        long long diff = LLONG_MIN;
+        int bestk = 2; 
+
+        for(int k : divisors) {
+            long long curr = LLONG_MIN;
+            long long maxSum = LLONG_MIN;
+
+            for(int x : nums) {
+                long long val = (x%k == 0) ? x : -1LL*x;
+            if(curr <0)
+                curr = val;
+                else
+                curr += val;
+
+                maxSum = max(maxSum, curr);
+                }
+            if(maxSum > diff || maxSum == diff && k < bestk) {
+                diff = maxSum;
+                bestk = k;
+            }
+        }
+        if (diff == LLONG_MIN) {
+            diff = -(*min_element(nums.begin(), nums.end()));
+            bestk = 2;
+        }
+        long long ans = (diff % MOD)*bestk;
+        ans%= MOD;
+        if(ans < 0) ans+=MOD;
+        return (int)ans;
+    }
+};
