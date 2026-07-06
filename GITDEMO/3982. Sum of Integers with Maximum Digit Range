@@ -1,0 +1,30 @@
+class Solution {
+public:
+      int DigitRange(int num) {
+          int maxi = 0;
+          int mini = 9;
+
+          while(num > 0) {
+              int dig = num%10;
+              maxi = max(maxi, dig);
+              mini = min(dig,mini);
+              num /= 10;
+          }
+          return maxi - mini;
+      }
+    
+    int maxDigitRange(vector<int>& nums) {
+        int maxRan = -1;
+        for(int num : nums) {
+            maxRan = max(maxRan, DigitRange(num));
+        }
+
+        int sum = 0;
+        for(int num : nums) {
+            if(DigitRange(num) == maxRan) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
+};
