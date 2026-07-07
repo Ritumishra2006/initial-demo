@@ -1,0 +1,25 @@
+class Solution {
+public:
+    long long sumAndMultiply(int n) {
+        long long sum = 0;
+        long long dig = 0;
+
+        vector<int> digits;
+
+        while (n > 0) {
+            int d = n % 10;
+            sum += d;
+            digits.push_back(d);
+            n /= 10;
+        }
+
+        // Build the number in the original order, skipping zeros
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            if (digits[i] != 0) {
+                dig = dig * 10 + digits[i];
+            }
+        }
+
+        return sum * dig;
+    }
+};
