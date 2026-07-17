@@ -1,0 +1,28 @@
+class Solution {
+public:
+    long long gcdSum(vector<int>& nums) {
+        vector<int> mx;
+        int prefixMax = -1e9;
+        for(int i = 0; i < nums.size(); i++) {
+            prefixMax = max(prefixMax, nums[i]);
+            mx.push_back(prefixMax);
+        }
+         vector<int> prefixGcd;
+        for(int i = 0; i < nums.size(); i++) {
+            prefixGcd.push_back(gcd(nums[i], mx[i]));
+        }
+        ranges::sort(prefixGcd);
+
+        long long ans = 0;
+        int s = 0;
+        int e = nums.size()-1;
+        while(s < e) {
+            ans += gcd(prefixGcd[s],prefixGcd[e]);
+            s++;
+            e--;
+        }
+        return ans;
+    
+        }
+    
+};
