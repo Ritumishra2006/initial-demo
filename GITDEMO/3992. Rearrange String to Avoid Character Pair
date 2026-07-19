@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string rearrangeString(string s, char x, char y) {
+       string xset = "";
+       string mid = "";
+       string yset = "";
+        for(char ch : s) {
+            if(ch == y) {
+                yset += ch;
+            } else if(ch == x) {
+                xset += ch;
+            } else {
+                mid += ch;
+            }
+        }
+    return yset+mid+xset;
+    }
+};
