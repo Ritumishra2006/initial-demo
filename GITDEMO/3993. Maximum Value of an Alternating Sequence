@@ -1,0 +1,11 @@
+class Solution {
+public:
+    long long maximumValue(int n, int s, int m) {
+        auto mav = make_tuple(n,s,m);
+        if(n == 1) return s;
+        long long vari = n-1;
+        long long remi = (vari+1)/2;
+        long long mx = s+(remi*(long long)m) - (remi-1);
+        return mx;
+    }
+};
